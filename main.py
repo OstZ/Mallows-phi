@@ -2,6 +2,7 @@ import numpy as np
 import random
 from utils import load_data
 from functions import local_kemeny, AMP
+import math
 
 if __name__ == '__main__':
     path = 'sushi3-2016'
@@ -15,5 +16,7 @@ if __name__ == '__main__':
 
     user_pair = pairs[46:60]
     print(AMP(user_pair,ref_rank,0.5))
+    #root = optimize.newton(newphi, 0.7, args=(2,10,))
+
 
 

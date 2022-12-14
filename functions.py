@@ -1,4 +1,5 @@
 import numpy as np
+from scipy import optimize
 
 def local_kemeny(pairs,init_rank):
     '''
@@ -70,6 +71,32 @@ def AMP(user_pairs, ref_rank,phi):
 
     return rank
 
+def newphi(phi,a_d,num_i):
+    '''
+    compute new phi
+    :param phi: variable
+    :param a_d: mean of kendall-tau distances
+    :param num_i: number of items
+    :return: phi
+    '''
+    sum1 = 0
+    const1 = phi/(1 - phi)
+    for i in range(1,num_i+1):
+        pow_phi = np.power(phi,i)
+        sum1 += const1 - i * pow_phi/(1 - pow_phi)
+    return sum1 - a_d
+
+
+def estimate_phi(trian_pairs, ref_rank, init_phi, thres, iter):
+    '''
+    estimate phi
+    :param trian_pairs: partial preference of users,shape of nx3
+    :param ref_rank:reference rank
+    :param init_phi:initial value of phi
+    :param theta: convergence threshold
+    :param iter:number of iterations
+    :return:phi
+    '''
 
 
 
